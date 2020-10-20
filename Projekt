@@ -1,0 +1,109 @@
+using System;
+
+namespace Projektarbete_Stickspel
+{
+    class Program
+    {
+        public static void Main(string[] args)
+        {
+
+            DecideColor();
+            Console.WriteLine("Hej och välkommen till detta spel!");
+            Console.ReadLine();
+            string[] player = new string[2];
+            player = NamePlayer(OneOrTwo());
+           
+            Console.Clear();
+            GameRules(player);
+            Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("Score\n" + player[0] + ":\n" + player[1] + ":");
+
+            Console.ReadLine();
+            
+        }
+        /// <summary>
+        /// Förklarar spelets regler
+        /// </summary>
+        /// <param name="player"></param>
+        static void GameRules(string[] player)
+        {
+            Console.WriteLine("Hello " + player[0] + "!\n\nReglerna är följande... \n\n" +
+                "1.Spelet börjar med att femton stickor placeras i tre lika stora högar. \n" +
+                player[1] + " börjar spelet och ska välja från vilken hög hon ska plocka \nstickorna " +
+                "ifrån. Notera att man får bara välja en hög per gång.\n Därefter väljer... ");
+
+              
+        }
+
+        /// <summary>
+        ///  Spelare får ange namn
+        /// </summary>
+        /// <returns></returns>
+        static string[] NamePlayer(int oneortwo)
+        {
+            string[] player = new string[2];
+
+            Console.WriteLine("Ange spelare 1:");
+            player[0] = Console.ReadLine();
+            
+            if(oneortwo == 1)
+            {  
+                player[1] = "Dator";
+            } else
+            {
+                Console.WriteLine("Ange spelare 2:");
+                player[1] = Console.ReadLine();
+            }
+
+            return player;
+        }
+
+        /// <summary>
+        /// Denna anger färgen på Bakgrunden och texten
+        /// </summary>
+        static void DecideColor()
+        {
+            Console.BackgroundColor = ConsoleColor.DarkMagenta;
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        /// <summary>
+        /// Användare får ange hur många spelare som ska spela. 1 eller 2.
+        /// </summary>
+        /// <returns></returns>
+        static int OneOrTwo()
+        {
+            bool loop = true;
+            int choise = 0;
+            while (loop == true)
+            {
+                Console.WriteLine("Är ni 1 eller 2 spelare?");
+                int.TryParse(Console.ReadLine(), out choise);
+
+                if (choise >= 1 && choise <= 2)
+                {               
+                    loop = false;
+                    Console.Clear();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.Write("Någonting gick fel: ");
+                }
+            }
+
+            return choise;
+
+
+        }
+
+
+
+
+    }
+}
+
+       
+        
